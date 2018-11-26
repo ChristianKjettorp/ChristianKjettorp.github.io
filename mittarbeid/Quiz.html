@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Javascript</title>
+</head>
+<style>
+    body {
+        background-color: lightblue;
+    }
+    </style>
+<body>     
+     <h1>Quiz</h1>
+    <h3>Trykk på det alternativet du tror er riktig!</h3>
+    <p>Hvilken by er hovedstaden i Norge?</p>
+    <p id="Riktig"></p>
+    <p id="feil"></p>
+    <p id="feil"></p>
+    <p onclick="Feilsvar()">Trondheim</p>
+    <p onclick="Riktigsvar()">Oslo</p>
+    <p onclick="Feilsvar()">Bergen</p>
+
+    <script>
+
+        alert('Er du klar?!')
+        alert('Sikker?')
+        alert('BRA!')
+        function Riktigsvar() {
+            document.getElementById('Riktig').innerHTML = 'Riktig';
+        }
+        function Feilsvar() {
+            document.getElementById('feil').innerHTML = 'feil';
+        }
+        function Feilsvar() {
+            document.getElementById('feil').innerHTML = 'feil';
+        }
+    </script>
+</body>
+</html>
