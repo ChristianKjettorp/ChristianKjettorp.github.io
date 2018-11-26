@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Javascript</title>
+</head>
+<style>
+    body {
+        background-color: lightblue;
+    }
+</style>
+<body>
+    <h1>Javascript</h1>
+
+    <button type="button"
+            onclick="document.getElementById('demo').innerHTML = Date()">
+        Trykk på meg for å vise tid og dato!
+    </button>
+
+    <p id="demo"></p>
+    <p id="demo">Med Javascript kan vi gjøre masse forskjellig på en nettside!</p>
+
+    <button type="button" onclick='document.getElementById("demo").innerHTML =
+        "Heisann!"'>Trykk på meg!</button>
+
+
+</body>
+</html>
