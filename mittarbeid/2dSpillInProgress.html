@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #board {
+            height: 100vh;
+            background-color: aquamarine;
+            display: grid;
+            grid-template-columns: repeat(20,1fr);
+            grid-template-rows: repeat(15,1fr);
+        }
+
+        .cell {
+            font-size: 200%;
+            text-align:center;
+        }
+
+        .sea {
+            background-color: blue;
+        }
+
+        .grass {
+            background-color: green;
+        }
+
+        .road {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body onkeyup="move(event)">
+    <div id="board">
+    </div>
+    <script>
+        var boardDiv = document.getElementById('board');
+        var html = '';
+        var roadThickness = 3;
+        var seaThickness = 4;
+        var playerCol = 10;
+        var playerRow = 10;
+        var index = playerRow * 20 + playerCol;
+
+
+        for (var rowNo = 0; rowNo < 15; rowNo++) {
+            for (var colNo = 0; colNo < 20; colNo++) {
+                if (Math.abs(rowNo - (15 - colNo)) < roadThickness) html += '<div class="cell road">&nbsp;</div>';
+                else if (Math.abs(rowNo - colNo) < seaThickness) html += '<div class="cell sea">&nbsp;</div>';
+                else html += '<div class="cell grass">&nbsp;</div>';
+            }
+        }
+        boardDiv.innerHTML = html;
+        showPlayer('😐');
+
+        function showPlayer(content) {
+            var cells = document.getElementsByClassName('cell');
+            var cell = cells[playerRow * 20 + playerCol];
+            cell.innerHTML = content;
+        }
+
+        function movePlayer(moveCol, moveRow) {
+            showPlayer('&nbsp;');
+            playerCol += moveCol;
+            playerRow += moveRow;
+            showPlayer('😐');
+        }
+
+        function move(e) {
+            console.log(e.code);
+            if (e.code === 'ArrowLeft') movePlayer(-1, 0);
+            if (e.code === 'ArrowRight') movePlayer(1, 0);
+            if (e.code === 'ArrowUp') movePlayer(0, -1);
+            if (e.code === 'ArrowDown') movePlayer(0, 1);
+        }
+
+    </script>
+</body>
+</html>
