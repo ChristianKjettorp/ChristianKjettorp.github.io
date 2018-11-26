@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Labyrint Generator</title>
+    <style>
+
+        table, tr, td {
+            border: 1px solid gray;
+            margin: 5;
+            padding: 0;
+            border: 0;
+            border-collapse: collapse;
+            margin-top: 2vh;
+        }
+
+            td.thick {
+                width: 15px;
+                max-width: 20px;
+            }
+
+            td.thin {
+                width: 30px;
+                max-width: 30px;
+            }
+
+            tr.thick {
+                height: 10px;
+                max-height: 10px;
+               
+            }
+
+            tr.thin {
+                height: 30px;
+                max-height: 30px;
+            }
+        input[type=range]::-webkit-slider-runnable-track {
+            -webkit-appearance: none;
+            background: rgba(59,173,227,1);
+            background: -moz-linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
+            background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(59,173,227,1)), color-stop(25%, rgba(87,111,230,1)), color-stop(51%, rgba(152,68,183,1)), color-stop(100%, rgba(255,53,127,1)));
+            background: -webkit-linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
+            background: -o-linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
+            background: -ms-linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
+            background: linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3bade3 ', endColorstr='#ff357f ', GradientType=1 );
+            height: 2px;
+            
+        }
+
+        input[type=range]:focus {
+            outline: none;
+
+        }
+
+        input[type=range]: {
+            -moz-appearance: none;
+            background: rgba(59,173,227,1);
+            background: -moz-linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
+            background: -webkit-gradient(left bottom, right top, color-stop(0%, rgba(59,173,227,1)), color-stop(25%, rgba(87,111,230,1)), color-stop(51%, rgba(152,68,183,1)), color-stop(100%, rgba(255,53,127,1)));
+            background: -webkit-linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
+            background: -o-linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
+            background: -ms-linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
+            background: linear-gradient(45deg, rgba(59,173,227,1) 0%, rgba(87,111,230,1) 25%, rgba(152,68,183,1) 51%, rgba(255,53,127,1) 100%);
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3bade3 ', endColorstr='#ff357f ', GradientType=1 );
+            height: 2px;
+            border: 15px;
+
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            border: 2px solid;
+            border-radius: 50%;
+            height: 25px;
+            width: 25px;
+            max-width: 80px;
+            position: relative;
+            bottom: 11px;
+            background-color: #1d1c25;
+            cursor: -webkit-grab;
+            -webkit-transition: border 1000ms ease;
+            transition: border 1000ms ease;
+        }
+
+        input[type=range]::-moz-range-thumb {
+            -moz-appearance: none;
+            border: 2px solid;
+            border-radius: 50%;
+            height: 25px;
+            width: 25px;
+            max-width: 80px;
+            position: relative;
+            bottom: 11px;
+            background-color: #1d1c25;
+            cursor: -moz-grab;
+            -moz-transition: border 1000ms ease;
+            transition: border 1000ms ease;
+            
+        }
+
+
+
+        .range.blue::-webkit-slider-thumb {
+            border-color: rgb(59,173,227);
+        }
+
+        .range.ltpurple::-webkit-slider-thumb {
+            border-color: rgb(87,111,230);
+        }
+
+        .range.purple::-webkit-slider-thumb {
+            border-color: rgb(152,68,183);
+        }
+
+        .range.pink::-webkit-slider-thumb {
+            border-color: rgb(255,53,127);
+        }
+
+        .range.blue::-moz-range-thumb {
+            border-color: rgb(59,173,227);
+        }
+
+        .range.ltpurple::-moz-range-thumb {
+            border-color: rgb(87,111,230);
+        }
+
+        .range.purple::-moz-range-thumb {
+            border-color: rgb(152,68,183);
+        }
+
+        .range.pink::-moz-range-thumb {
+            border-color: rgb(255,53,127);
+        }
+
+        input[type=range]::-webkit-slider-thumb:active {
+            cursor: -webkit-grabbing;
+        }
+
+        input[type=range]::-moz-range-thumb:active {
+            cursor: -moz-grabbing;
+        }
+        .range {
+            -webkit-appearance: none;
+            position: center;
+            margin-top: 10px;
+        }
+        
+        
+
+            
+    </style>
+</head>
+<body>
+    <input type="range"
+           min="10" max="50"
+           step="0" value="10"
+           class="range blue"
+           oninput="slider(parseInt(this.value))" />
+    <table id="brett"></table>
+
+    <script>
+
+        var board = document.getElementById('brett');
+        slider(12);
+        function slider(size) {
+            console.log(size);
+            var html = '';
+            for (var rowIndex = 2; rowIndex < size; rowIndex++) {
+                var rowIsThin = rowIndex % 2 === 0;
+                var cssClass = rowIsThin ? 'thin' : 'thick';
+                html += `<tr class="${cssClass}">`;
+                for (var colIndex = 5; colIndex < size; colIndex++) {
+                    var colIsThin = colIndex % 2 === 1;
+                    console.log(rowIsThin, colIsThin);
+                    cssClass = colIsThin ? 'thin' : 'thick';
+                    var color;
+                    if (rowIsThin && colIsThin) color = 'yellow';
+                    else if (!rowIsThin && !colIsThin) color = 'black';
+                    else if (Math.random() < 0.5) color = 'red';
+                    else color = 'blue';
+                    html += `<td  class="${cssClass}" style="background-color: ${color}"></td>`;
+                }
+                html += '</tr>';
+            }
+            board.innerHTML = html;
+        }
+        var mazeModel = {
+            size: 3,
+            rows: [
+                [
+                    { type: 'small wall', isOpen: false },
+                    { type: 'wide wall', isOpen: false },
+                    { type: 'small wall', isOpen: false },
+                    { type: 'wide wall', isOpen: false },
+                    { type: 'small wall', isOpen: false },
+                    { type: 'wide wall', isOpen: false },
+                    { type: 'small wall', isOpen: false }
+                ],
+                [
+                    { type: 'high wall', isOpen: false },
+                    { type: 'room', isOpen: true },
+                    { type: 'high wall', isOpen: true },
+                    { type: 'room', isOpen: true },
+                    { type: 'high wall', isOpen: false },
+                    { type: 'room', isOpen: true },
+                    { type: 'high wall', isOpen: false }
+                ],
+                [
+                    { type: 'small wall', isOpen: false },
+                    { type: 'wide wall', isOpen: false },
+                    { type: 'small wall', isOpen: false },
+                    { type: 'wide wall', isOpen: true },
+                    { type: 'small wall', isOpen: false },
+                    { type: 'wide wall', isOpen: false },
+                    { type: 'small wall', isOpen: false }
+                ],
+                [
+                    { type: 'high wall', isOpen: false },
+                    { type: 'room', isOpen: true },
+                    { type: 'high wall', isOpen: false },
+                    { type: 'room', isOpen: true },
+                    { type: 'high wall', isOpen: true },
+                    { type: 'room', isOpen: true },
+                    { type: 'high wall', isOpen: false }
+                ],
+                [
+                    { type: 'small wall', isOpen: false },
+                    { type: 'wide wall', isOpen: true },
+                    { type: 'small wall', isOpen: false },
+                    { type: 'wide wall', isOpen: true },
+                    { type: 'small wall', isOpen: false },
+                    { type: 'wide wall', isOpen: false },
+                    { type: 'small wall', isOpen: false }
+                ],
+                [
+                    { type: 'high wall', isOpen: false },
+                    { type: 'room', isOpen: true },
+                    { type: 'high wall', isOpen: false },
+                    { type: 'room', isOpen: true },
+                    { type: 'high wall', isOpen: true },
+                    { type: 'room', isOpen: true },
+                    { type: 'high wall', isOpen: false }
+                ],
+                [
+                    { type: 'small wall', isOpen: false },
+                    { type: 'wide wall', isOpen: false },
+                    { type: 'small wall', isOpen: false },
+                    { type: 'wide wall', isOpen: false },
+                    { type: 'small wall', isOpen: false },
+                    { type: 'wide wall', isOpen: false },
+                    { type: 'small wall', isOpen: false }
+                ]
+            ]
+        }
+
+        function isOnEdge(rowIndex, colIndex, size) {
+            return rowIndex === 0 || rowIndex === size - 1
+                || colIndex === 0 || colIndex === size - 1;
+        }
+        function initModel(mazeModel) {
+            console.log(Model);
+        }
+    </script>
+</body>
+</html>
