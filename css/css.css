@@ -1,15 +1,18 @@
 ﻿body{
     background-color:lightgray;
-    border-middle: solid;
+   
 }
 h1 {
     text-align: center;
-    }
+    color: darkgrey;
+    font-size: 4vw;
+    line-height: 1.5em;
+}
 h3 {
-    color: black;
+    color:black ;
 }
 .center {
-    margin-bottom: 0vh;
+    margin-bottom: -0vh;
 }
 
 ul {
@@ -26,5 +29,5 @@ p {
     border-bottom: ActiveBorder;
     border-right: ActiveBorder;
     background-color: gainsboro;
-    width: 48%;
+    width: 46%;
 }
