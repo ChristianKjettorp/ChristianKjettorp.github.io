@@ -1,40 +1,185 @@
-<!doctype html>
-<title>Christian Kjettorp Fevang</title>
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <body>
-        <header id="pageHeader"></header>
-        <article id="wip">
-            <h1>Start IT Getacademy - Christian Kjettorp Fevang</h1>
-            <br/><br /><br />
-            <h3>Her er noen eksempler på hva jeg har og holder på med.</h3>
-            <link rel="stylesheet" type="text/css" href="css/css.css">
-            <ul>
-                <li><a href="https://ChristianKjettorp.github.io/mittarbeid/labyrint-ferdig.html">Labyrint</a></li>
-                <li><a href="https://christiankjettorp.github.io/mittarbeid/trepaarad.html">Tre på rad</a></li>
-                <li><a href="https://christiankjettorp.github.io/mittarbeid/Quiz.html">Quiz</a></li>
-                <li><a href="https://christiankjettorp.github.io/mittarbeid/2dSpillInProgress.html">2d spill in progress</a></li>
-                <li><a href="https://christiankjettorp.github.io/mittarbeid/todo.html">To Do Liste</a></li>
-                <li><a href="https://christiankjettorp.github.io/mittarbeid/javascriptTest.html">Javascript Test</a></li>
-                <li><a href="https://christiankjettorp.github.io/mittarbeid/Sjakk.html">Sjakk in progress</a></li>
-                <li><a href="https://christiankjettorp.github.io/mittarbeid/Yatzi.html">Yatzi</a></li>
-            </ul>
-        </article>
-        <br/><br/>
-        <h3>Fellesprosjekt - Jotron Sammkjøringsapp</h3>
-    <p>
-        <a href="https://christiankjettorp.github.io/Start-it-Jotron.github-io/">Jotron Sammkjøringsapp</a><br/>
-        <p1>Brukernavn: admin - Passord: 12345</p1>
-    </p>
-    <br /><br /><br /><br />
-    <footer id="pageFooter">
-            <img src="https://raw.githubusercontent.com/ChristianKjettorp/ChristianKjettorp.github.io/master/img/0.png" class="center" />
-            <div id="lagetav">Laget av Christian K. Fevang</div>
-        </footer>
-
-
-    </body>
+    <meta charset="utf-8" />
+    <title>Christian Kjettorp Fevang</title>
 </head>
+   <body>
+    <link rel="stylesheet" type="text/css" href="css/css.css">
+    <header>
+    <h1>Start IT - Getacademy - Christian Kjettorp</h1>
+    </header>
+
+    <div class="container">
+    <table>
+        <thead>
+        <tr>
+            <header>
+                <h1>Mitt Arbeid så langt</h1>
+            </header>
+            <th>
+
+                <h2>Prosjekt Navn</h2>
+            </th>
+            <th>
+                <h2>Trykk på knappene</h2>
+            </th>
+        </tr>
+
+        </thead>
+        <tbody>
+        <tr>
+            <td class="left">
+                <h3>Labyrint</h3></td>
+            <td>
+                <form>
+                    <input type="button" value="Labyrint" onclick="window.location.href='https://ChristianKjettorp.github.io/mittarbeid/labyrint-ferdig.html'" />
+                </form>
+            </td>
+        </tr>
+        <tr>
+            <td class="left">
+                <h3>2D Spill in progress</h3></td>
+            <td>
+                <input type="button" value="2D Spill In Progress" onclick="window.location.href='https://ChristianKjettorp.github.io/mittarbeid/2dSpillInProgress.html'"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="left">
+                <h3>Quiz</h3></td>
+            <td>
+                <input type="button" value="Quiz" onclick="window.location.href='https://ChristianKjettorp.github.io/mittarbeid/Quiz.html'"/>
+
+            </td>
+        </tr>
+        <tr>
+            <td class="left">
+                <h3>Sjakk Prosjekt</h3></td>
+        <td>
+
+            <input type="button" value="Sjakk" onclick="window.location.href = 'https://ChristianKjettorp.github.io/mittarbeid/Sjakk.html'"/>
+        </td>
+        </tr>
+        <tr>
+            <td class="left">
+                <h3>Tre På Rad</h3></td>
+            <td>
+
+                <input type="button" value="Tre På Rad" onclick="window.location.href = 'https://ChristianKjettorp.github.io/mittarbeid/trepaarad.html'"/>
+            </td>
+        </tr>
+            </div>
+        </tbody>
+    </table>
+</div>
 
 
 
+   <style>
+           #submit:hover {
+               border: none;
+               background: orange;
+               box-shadow: 0px 0px 1px #777;
+           }
 
+           button:hover,
+           button:focus {
+               background: #0053ba;
+           }
+
+           button:focus {
+               outline: 1px solid #fff;
+               outline-offset: -4px;
+           }
+
+           button:active {
+               transform: scale(0.99);
+           }
+
+       a {
+           font-size: 30px;
+           color: white;
+       }
+            body {
+            background-color: #242f44;
+            color: white;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        header {
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        h1 {
+            font-size: 36px;
+            padding: 15px;
+            color: #8c6b48;
+            background-color: white;
+        }
+
+        h2 {
+            font-size: 24px;
+            padding: 15px;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            font-family: bold;
+            padding: 15px;
+            text-transform: uppercase;
+            text-align: left;
+            margin-left: 20px;
+            font-weight: 500;
+            line-height: 2.7;
+            letter-spacing: 0.8px;
+        }
+
+        th {
+            border: 2px solid #8c6b48;
+        }
+
+        table {
+            text-align: center;
+            margin: 30px auto;
+        }
+
+        td {
+            border: 2px solid #8c6b48;
+            width: 200px;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            position: fixed;
+            width: 100%;
+            bottom: 5px;
+            background-color: #242f44;
+            z-index: 5;
+        }
+
+            footer h3 {
+                display: inline-block;
+                font-size: 14px;
+                background-color: #242f44;
+            }
+
+        .container {
+            max-width: 940px;
+            margin: 0 auto;
+            height: 800px;
+        }
+
+
+        .left {
+            width: 300px;
+        }
+      
+   
+   </style>
+
+
+</body>
+</html>
