@@ -1,6 +1,30 @@
 ﻿body{
     background-color:lightgray;
+    border-middle: solid;
 }
 h1 {
     text-align: center;
+    }
+h3 {
+    color: black;
+}
+.center {
+    margin-bottom: 0vh;
+}
+
+ul {
+    border-top: ActiveBorder;
+    border-left: ActiveBorder;
+    border-bottom: ActiveBorder;
+    border-right: ActiveBorder;
+    background-color: gainsboro;
+    width: 44%;
+}
+p {
+    border-top: ActiveBorder;
+    border-left: ActiveBorder;
+    border-bottom: ActiveBorder;
+    border-right: ActiveBorder;
+    background-color: gainsboro;
+    width: 48%;
 }
