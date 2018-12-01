@@ -1,40 +1,213 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Javascript</title>
+    <title>Quiz</title>
 </head>
-<style>
-    body {
-        background-color: lightblue;
-    }
+<body>
+    <h1>Quiz av Christian K. Fevang</h1>
+    <div class="quiz-container">
+        <div id="quiz"></div>
+    </div>
+    <button id="previous">Neste Spørmsål</button>
+    <button id="next">Neste Spørsmål</button>
+    <button id="submit">Vis Resultatet!</button>
+    <div id="results"></div>
+    <style>
+        
+        body {
+            font-size: 20px;
+            font-family: 'Work Sans', sans-serif;
+            color: #333;
+            font-weight: 300;
+            text-align: center;
+            background-color: lightgray;
+        }
+        h1 {
+            font-weight: 300;
+            margin: 0px;
+            padding: 10px;
+            font-size: 30px;
+            background-color: #279;
+            color: #fff;
+        }
+        .question {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+        .answers {
+            margin-bottom: 20px;
+            text-align: left;
+            display: inline-block;
+        }
+            .answers label {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+        button {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 22px;
+            background-color: #279;
+            color: #fff;
+            border: 0px;
+            border-radius: 3px;
+            padding: 20px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+
+            button:hover {
+                background-color: #38a;
+            }
+        .slide {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+        .active-slide {
+            opacity: 1;
+            z-index: 2;
+        }
+        .quiz-container {
+            position: relative;
+            height: 200px;
+            margin-top: 40px;
+        }
     </style>
-<body>     
-     <h1>Quiz</h1>
-    <h3>Trykk på det alternativet du tror er riktig!</h3>
-    <p>Hvilken by er hovedstaden i Norge?</p>
-    <p id="Riktig"></p>
-    <p id="feil"></p>
-    <p id="feil"></p>
-    <p onclick="Feilsvar()">Trondheim</p>
-    <p onclick="Riktigsvar()">Oslo</p>
-    <p onclick="Feilsvar()">Bergen</p>
-
     <script>
+        (function () {
+            const myQuestions = [
+                {
+                    question: "Hvilket romskip ble sendt mot Jupiter i 1972?",
+                    answers: {
+                        A: "Apollo 10",
+                        B: "The Millenium Falcon",
+                        C: "Pioneer 10"
+                    },
+                    correctAnswer: "C"
+                },
+                {
+                    question: "Hvem var den aller første som spilte James Bond?",
+                    answers: {
+                        A: "Roger Moore",
+                        B: "Sean Connery",
+                        C: "Pierce Brosnan"
+                    },
+                    correctAnswer: "B"
+                },
+                {
+                    question: "Hvor mange Star Wars filmer har vi fått hittil?",
+                    answers: {
+                        A: "7",
+                        B: "8",
+                        C: "10",
+                        D: "12"
+                    },
+                    correctAnswer: "C"
+                }
 
-        alert('Er du klar?!')
-        alert('Sikker?')
-        alert('BRA!')
-        function Riktigsvar() {
-            document.getElementById('Riktig').innerHTML = 'Riktig';
-        }
-        function Feilsvar() {
-            document.getElementById('feil').innerHTML = 'feil';
-        }
-        function Feilsvar() {
-            document.getElementById('feil').innerHTML = 'feil';
-        }
+            ];
+
+            function buildQuiz() {
+                const output = [];
+
+                myQuestions.forEach((currentQuestion, questionNumber) => {
+                    const answers = [];
+
+                    for (letter in currentQuestion.answers) {
+                        answers.push(
+                            `<label>
+             <input type="radio" name="question${questionNumber}" value="${letter}">
+              ${letter} :
+              ${currentQuestion.answers[letter]}
+           </label>`
+                        );
+                    }
+
+                    output.push(
+                        `<div class="slide">
+           <div class="question"> ${currentQuestion.question} </div>
+           <div class="answers"> ${answers.join("")} </div>
+         </div>`
+                    );
+                });
+
+                quizContainer.innerHTML = output.join("");
+            }
+
+            function showResults() {
+                const answerContainers = quizContainer.querySelectorAll(".answers");
+
+                let numCorrect = 0;
+
+                myQuestions.forEach((currentQuestion, questionNumber) => {
+                    const answerContainer = answerContainers[questionNumber];
+                    const selector = `input[name=question${questionNumber}]:checked`;
+                    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+                    if (userAnswer === currentQuestion.correctAnswer) {
+                        numCorrect++;
+
+                        answerContainers[questionNumber].style.color = "green";
+                    } else {
+                        answerContainers[questionNumber].style.color = "red";
+                    }
+                });
+
+                resultsContainer.innerHTML = `${numCorrect} av ${myQuestions.length} `;
+            }
+
+            function showSlide(n) {
+                slides[currentSlide].classList.remove("active-slide");
+                slides[n].classList.add("active-slide");
+                currentSlide = n;
+
+                if (currentSlide === 0) {
+                    previousButton.style.display = "none";
+                } else {
+                    previousButton.style.display = "inline-block";
+                }
+
+                if (currentSlide === slides.length - 1) {
+                    nextButton.style.display = "none";
+                    submitButton.style.display = "inline-block";
+                } else {
+                    nextButton.style.display = "inline-block";
+                    submitButton.style.display = "none";
+                }
+            }
+
+            function showNextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function showPreviousSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            const quizContainer = document.getElementById("quiz");
+            const resultsContainer = document.getElementById("results");
+            const submitButton = document.getElementById("submit");
+
+            buildQuiz();
+
+            const previousButton = document.getElementById("previous");
+            const nextButton = document.getElementById("next");
+            const slides = document.querySelectorAll(".slide");
+            let currentSlide = 0;
+
+            showSlide(0);
+
+            submitButton.addEventListener("click", showResults);
+            previousButton.addEventListener("click", showPreviousSlide);
+            nextButton.addEventListener("click", showNextSlide);
+        })();
     </script>
 </body>
 </html>
