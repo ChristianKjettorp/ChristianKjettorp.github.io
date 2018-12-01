@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Pizza Bestilling</title>
+</head>
+<body>
+    <tr>
+        <h2>Pizza-bestilling</h2>
+        <div id="info" style="padding-bottom: 20px;">Gjør ett valg på hver linje:</div>
+
+        <h3>Velg Bunn:</h3>
+        <h3>Velg Fyll</h3>
+        <h3>Velg Størrelse</h3>
+       
+        <ul>
+            <p>Bunn:</p>
+            <input id="tykkBunn" type="radio" name="bunn" onchange="info()" />Tykk
+            <input id="tynnBunn" type="radio" name="bunn" onchange="info()" />Tynn
+            <br />
+
+            <p>Fyll:</p>
+            <input id="fyllTaco" type="radio" name="fyll" onchange="info()" />Taco
+            <input id="fyllKylling" type="radio" name="fyll" onchange="info()" />Kylling
+            <input id="fyllPepperoni" type="radio" name="fyll" onchange="info()" />Pepperoni
+            <br />
+
+            <p>Størrelse:</p>
+            <input id="stor" type="radio" name="str" onchange="info()" />Stor
+            <input id="middels" type="radio" name="str" onchange="info()" />Middels
+            <input id="liten" type="radio" name="str" onchange="info()" />Liten
+            <br /><br />
+
+            <button id="bestill" disabled="" onclick="alert('Bestilt!');">Bestill</button>
+        </ul>
+    </tr>
+<script>
+    var btnBestill = document.getElementById('bestill');
+    var infoDiv = document.getElementById('info');
+    var bunnTykk = document.getElementById('tykkBunn');
+    var bunnTynn = document.getElementById('tynnBunn');
+    var fyllTaco = document.getElementById('fyllTaco');
+    var fyllKylling = document.getElementById('fyllKylling');
+    var fyllPepperoni = document.getElementById('fyllPepperoni');
+    var strStor = document.getElementById('stor');
+    var strMiddels = document.getElementById('middels');
+    var strLiten = document.getElementById('liten');
+
+    function info() {
+        if ((bunnTykk.checked || bunnTynn.checked) &&
+            (fyllTaco.checked || fyllKylling.checked || fyllPepperoni.checked) &&
+            (strStor.checked || strMiddels.checked || strLiten.checked)) {
+            infoDiv.innerHTML = 'Du har fylt ut alt og er klar til å bestille!';
+            btnBestill.disabled = false;
+        } else {
+            infoDiv.innerHTML = 'Du har ikke valgt:';
+            //if (bunnTykk.checked || bunnTynn.checked) {
+            //} else {
+            //    infoDiv.innerHTML += '<li>bunn</li>';
+            //}
+            if (!bunnTykk.checked && !bunnTynn.checked) {
+                infoDiv.innerHTML += '<li>bunn</li>';
+            }
+            if (!fyllTaco.checked && !fyllKylling.checked && !fyllPepperoni.checked) {
+                infoDiv.innerHTML += '<li>fyll</li>';
+            }
+            if (!strStor.checked && !strMiddels.checked && !strLiten.checked) {
+                infoDiv.innerHTML += '<li>størrelse</li>';
+            }
+        }
+    }
+</script>
+
+<style>
+    body {
+        background-color: lightgray;
+        align-content: center;
+        text-align: center;
+    }
+    h2 {
+        
+        font-size: 45px;
+    }
+    #info {
+        
+        font-size: 30px;
+    }
+    
+    ul {
+      font-size: 20px;
+      
+    }
+    p {
+    font-size: 25px;
+   
+    }
+    lo {
+        font-size: 15px;
+       
+    
+    
+    
+
+</style>
+</body>
+</html>
