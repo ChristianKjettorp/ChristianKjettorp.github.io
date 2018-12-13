@@ -155,13 +155,17 @@
             },
             startShortBreak: function () {
                 this.resetVariables(5, 0, true);
+                playAudio();
             },
             startLongBreak: function () {
                 this.resetVariables(45, 0, true);
+                playAudio();
+
             },
             stopTimer: function () {
                 this.resetVariables(25, 0, false);
                 this.updateDom();
+                playAudio();
             },
             toDoubleDigit: function (num) {
                 if (num < 10) {
