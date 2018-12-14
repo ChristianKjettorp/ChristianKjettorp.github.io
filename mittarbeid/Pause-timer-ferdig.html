@@ -7,205 +7,265 @@
 
 </head>
 <body>
-    <div id="pomodoro-app">
-        <div id="container">
-            <div id="timer">
-                <div id="time">
-                    <span id="minutes">25</span>
-                    <span id="colon">:</span>
-                    <span id="seconds">00</span>
-                </div>
-                <div id="filler"></div>
+<h1>Pomodoro</h1>
+<div class="mover">
+    <span id="tid">Klokken er nå</span>
+</div>
+<script>
+    const h = document.getElementsByTagName('h1')[0];
+    const sp = document.getElementsByTagName('span')[0];
+    setInterval(() => {
+            const time = new Date();
+            const offset = time.getTimezoneOffset() * 60000
+
+            const d = new Date(Date.now() - offset);
+            const x = d.toISOString().split('T')[1].split('.')[0];
+            sp.innerText = `Klokken er nå: ${x}! `;
+
+        },
+        200);
+</script>
+<div id="pomodoro-app">
+    <div id="container">
+        <div id="timer">
+            <div id="time">
+                <span id="minutes">25</span>
+                <span id="colon">:</span>
+                <span id="seconds">00</span>
             </div>
-            <div id="buttons">
-                <button id="work">Jobb</button>
-                <button id="shortBreak">Pause 5 min</button>
-                <button id="longBreak">Lunsj 45 min</button>
-                <button id="stop">Stopp</button>
-            </div>
+            <div id="filler"></div>
+        </div>
+        <div id="buttons">
+            <button id="work">Jobb</button>
+            <button id="shortBreak">Pause 5 min</button>
+            <button id="longBreak">Lunsj 45 min</button>
+            <button id="stop">Stopp</button>
         </div>
     </div>
-    <audio id="myAudio">
-        <source src="ding-sound-effect_2" type="audio/ogg">
-        <source src="ding-sound-effect_2.mp3" type="audio/mpeg">
+</div>
+<audio id="myAudio">
+    <source src="ding-sound-effect_2" type="audio/ogg">
+    <source src="ding-sound-effect_2.mp3" type="audio/mpeg">
 
-    </audio>
-    
-    
-    <style>
+</audio>
+<footer>
+    Laget av Christian K. Fevang
+</footer>
+
+<style>
+    body {
+        background-color: lightgray;
+    }
+    footer {
+        margin-left: 180vh;
+        margin-top: 25vh;
+        font-weight: bold;
+        font-size: 20px;
+    }
+    h1 {
+        text-align: center;
+    }
+
+    .mover {
+        position: absolute;
+        left: 43%;
+        right: 40%;
+        top: 300px;
+        color: black;
+        font-size: 24px;
+        margin-top: 10vh;
+    } 
+
+    #tid {
+        align-content: center;
+        
+    }
+ 
         #container {
-            border: 1px solid #333;
+            border: 2px solid blue;
             border-radius: 20px;
             width: 400px;
             margin: 20px auto;
             padding: 20px;
+            height: 450px;
             text-align: center;
             background: lightblue;
+            box-shadow: 0 0 10px black;
+            margin-top: 5vh;
         }
 
-        #timer {
-            font-size: 50px;
-            margin: 10px auto;
-            border: 5px solid gray;
-            border-radius: 50%;
-            width: 200px;
-            height: 200px;
-            overflow: hidden;
-            position: relative;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            cursor: default;
-        }
+    #timer {
+        font-size: 50px;
+        margin: 10px auto;
+        border: 2px solid white;
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        overflow: hidden;
+        position: relative;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        cursor: default;
+        box-shadow: 0 0 20px black;
+    }
 
-        #time {
-            margin-top: 70px;
-            z-index: 1;
-            position: relative;
-            color: gray;
-        }
+    #time {
+        margin-top: 70px;
+        z-index: 1;
+        position: relative;
+        color: black;
+        
+        
+    }
 
-        #filler {
-            background: lightgrey;
-            height: 0px;
-            width: 200px;
-            position: absolute;
-            bottom: 0;
-        }
+    #filler {
+        background: white;
+        height: 0px;
+        width: 200px;
+        position: absolute;
+        bottom: 0;
 
-        #buttons button {
-            background: #4da6ff;
-            border: none;
-            color: #fff;
-            cursor: pointer;
-            padding: 5px;
-            width: 90px;
-            margin: 10px auto;
-            font-size: 14px;
-            height: 50px;
-            border-radius: 50px;
-        }
+    }
+
+    #buttons button {
+        background: black;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: 5px;
+        width: 90px;
+        margin: 10px auto;
+        font-size: 14px;
+        height: 50px;
+        border-radius: 50px;
+        box-shadow: 0 0 2px black;
+        margin-top: 125px;
+        border: solid 2px white;
+
+    }
 
             #buttons button#shortBreak {
-                background: #0c0;
+                background: black;
             }
 
             #buttons button#longBreak {
-                background: #080;
+                background: black;
             }
 
             #buttons button#stop {
-                background: #f00;
+                background: black;
             }
-    </style>
+    
 
-    <script>
-        var x = document.getElementById("myAudio");
+</style>
 
-        function playAudio() {
-            x.play();
-        }
+<script>
+    var x = document.getElementById("myAudio");
 
-        function pauseAudio() {
-            x.pause();
-        }
+    function playAudio() {
+        x.play();
+    }
+
+    function pauseAudio() {
+        x.pause();
+    }
 
 
-        var pomodoro = {
-            started: false,
-            minutes: 0,
-            seconds: 0,
-            fillerHeight: 0,
-            fillerIncrement: 0,
-            interval: null,
-            minutesDom: null,
-            secondsDom: null,
-            fillerDom: null,
-            init: function () {
-                var self = this;
-                this.minutesDom = document.querySelector('#minutes');
-                this.secondsDom = document.querySelector('#seconds');
-                this.fillerDom = document.querySelector('#filler');
-                this.interval = setInterval(function () {
+    var pomodoro = {
+        started: false,
+        minutes: 0,
+        seconds: 0,
+        fillerHeight: 0,
+        fillerIncrement: 0,
+        interval: null,
+        minutesDom: null,
+        secondsDom: null,
+        fillerDom: null,
+        init: function() {
+            var self = this;
+            this.minutesDom = document.querySelector('#minutes');
+            this.secondsDom = document.querySelector('#seconds');
+            this.fillerDom = document.querySelector('#filler');
+            this.interval = setInterval(function() {
                     self.intervalCallback.apply(self);
-                }, 1000);
-                document.querySelector('#work').onclick = function () {
-                    self.startWork.apply(self);
-                };
-                document.querySelector('#shortBreak').onclick = function () {
-                    self.startShortBreak.apply(self);
-                };
-                document.querySelector('#longBreak').onclick = function () {
-                    self.startLongBreak.apply(self);
-                };
-                document.querySelector('#stop').onclick = function () {
-                    self.stopTimer.apply(self);
-                };
-            },
-            resetVariables: function (mins, secs, started) {
-                this.minutes = mins;
-                this.seconds = secs;
-                this.started = started;
-                this.fillerIncrement = 200 / (this.minutes * 60);
-                this.fillerHeight = 0;
-            },
-            startWork: function () {
-                this.resetVariables(25, 0, true);
-            },
-            startShortBreak: function () {
-                this.resetVariables(5, 0, true);
-                playAudio();
-            },
-            startLongBreak: function () {
-                this.resetVariables(45, 0, true);
-                playAudio();
+                },
+                1000);
+            document.querySelector('#work').onclick = function() {
+                self.startWork.apply(self);
+            };
+            document.querySelector('#shortBreak').onclick = function() {
+                self.startShortBreak.apply(self);
+            };
+            document.querySelector('#longBreak').onclick = function() {
+                self.startLongBreak.apply(self);
+            };
+            document.querySelector('#stop').onclick = function() {
+                self.stopTimer.apply(self);
+            };
+        },
+        resetVariables: function(mins, secs, started) {
+            this.minutes = mins;
+            this.seconds = secs;
+            this.started = started;
+            this.fillerIncrement = 200 / (this.minutes * 60);
+            this.fillerHeight = 0;
+        },
+        startWork: function() {
+            this.resetVariables(25, 0, true);
+        },
+        startShortBreak: function() {
+            this.resetVariables(5, 0, true);
+            playAudio();
+        },
+        startLongBreak: function() {
+            this.resetVariables(45, 0, true);
+            playAudio();
 
-            },
-            stopTimer: function () {
-                this.resetVariables(25, 0, false);
-                this.updateDom();
-                playAudio();
-            },
-            toDoubleDigit: function (num) {
-                if (num < 10) {
-                    return "0" + parseInt(num, 10);
-                }
-                return num;
-            },
-            updateDom: function () {
-                this.minutesDom.innerHTML = this.toDoubleDigit(this.minutes);
-                this.secondsDom.innerHTML = this.toDoubleDigit(this.seconds);
-                this.fillerHeight = this.fillerHeight + this.fillerIncrement;
-                this.fillerDom.style.height = this.fillerHeight + 'px';
-            },
-            intervalCallback: function () {
-                if (!this.started) return false;
-                if (this.seconds == 0) {
-                    if (this.minutes == 0) {
-                        this.timerComplete();
-                        return;
-                    }
-                    this.seconds = 59;
-                    this.minutes--;
-                } else {
-                    this.seconds--;
-                }
-                this.updateDom();
-            },
-            timerComplete: function () {
-                this.started = false;
-                this.fillerHeight = 0;
-                playAudio();
+        },
+        stopTimer: function() {
+            this.resetVariables(25, 0, false);
+            this.updateDom();
+            playAudio();
+        },
+        toDoubleDigit: function(num) {
+            if (num < 10) {
+                return "0" + parseInt(num, 10);
             }
-        };
-        window.onload = function () {
-            pomodoro.init();
-        };
+            return num;
+        },
+        updateDom: function() {
+            this.minutesDom.innerHTML = this.toDoubleDigit(this.minutes);
+            this.secondsDom.innerHTML = this.toDoubleDigit(this.seconds);
+            this.fillerHeight = this.fillerHeight + this.fillerIncrement;
+            this.fillerDom.style.height = this.fillerHeight + 'px';
+        },
+        intervalCallback: function() {
+            if (!this.started) return false;
+            if (this.seconds == 0) {
+                if (this.minutes == 0) {
+                    this.timerComplete();
+                    return;
+                }
+                this.seconds = 59;
+                this.minutes--;
+            } else {
+                this.seconds--;
+            }
+            this.updateDom();
+        },
+        timerComplete: function() {
+            this.started = false;
+            this.fillerHeight = 0;
+            playAudio();
+        }
+    };
+    window.onload = function() {
+        pomodoro.init();
+    };
 
 
-
-
-    </script>
+</script>
 </body>
 </html>
