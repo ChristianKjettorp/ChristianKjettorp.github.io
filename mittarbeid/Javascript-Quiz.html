@@ -1,0 +1,399 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title>Send Email</title>
+    <script src="https://www.gstatic.com/firebasejs/5.7.0/firebase.js"></script>
+    <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyC76eObPEHwTmxMx1w--9ZbWTUlMVmTnxw",
+            authDomain: "javascript-quiz-b2a3a.firebaseapp.com",
+            databaseURL: "https://javascript-quiz-b2a3a.firebaseio.com",
+            projectId: "javascript-quiz-b2a3a",
+            storageBucket: "javascript-quiz-b2a3a.appspot.com",
+            messagingSenderId: "416646203717"
+        };
+        firebase.initializeApp(config);
+
+    </script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/sdk/2.2.4/email.min.js"></script>
+    <script type="text/javascript">
+        (function () {
+            emailjs.init("user_VLqQCl1qNcE2nTMGUFEH7");
+        })();
+
+    </script>
+</head>
+
+<body>
+
+
+    <h1>Javascript Quiz</h1>
+    <div class="quiz-container">
+        <div id="quiz"></div>
+    </div>
+    <button id="previous">Forrige Spørmsål</button>
+    <button id="next">Neste Spørsmål</button>
+    <button id="submit" onclick="sendEmail()">Vis Resultatet!</button>
+    <div id="results"></div><br />
+
+   
+    <script>
+        function sendEmail() {
+            var template_params = {
+                "reply_to": "reply_to_value"
+            }
+            var service_id = "default_service";
+            var template_id = "javascript_quiz";
+            emailjs.send(service_id, template_id, template_params);
+        }
+        
+    </script>
+
+    <footer>Av: Christian K. Fevang</footer>
+
+<style>
+        
+        
+        body {
+            background-color: #e6e6fa;
+            text-align: center;
+        }
+        #sendEmail {
+        visibility: collapse;
+        font-family: 'Work Sans', sans-serif;
+        font-size: 22px;
+        background-color: #242f44;
+        color: white;
+        border: 0px;
+        border-radius: 3px;
+        padding: 20px;
+        cursor: pointer;
+        margin-top: 30px;
+
+        }
+        #submit {
+        font-family: 'Work Sans', sans-serif;
+        font-size: 22px;
+        background-color: #242f44;
+        color: white;
+        border: 0px;
+        border-radius: 3px;
+        padding: 20px;
+        cursor: pointer;
+        margin-top: 30px;
+        }
+
+        footer {
+            margin-top: 50vh;
+            margin-left: 170vh;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            border-right: solid blue;
+            border-bottom: solid blue;
+            border-left: solid blue;
+            border-top: solid blue;
+            background-color: #242f44;
+            color: white;
+        }
+
+        #next {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 22px;
+            background-color: #242f44;
+            color: white;
+            border: 0px;
+            border-radius: 3px;
+            padding: 20px;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+        #previous {
+        font-family: 'Work Sans', sans-serif;
+        font-size: 22px;
+        background-color: #242f44;
+        color: white;
+        border: 0px;
+        border-radius: 3px;
+        padding: 20px;
+        cursor: pointer;
+        margin-top: 30px;
+        }
+        .question {
+            font-size: 35px;
+            margin-bottom: 10px;
+            border-bottom: solid blue;
+            border-left: solid blue;
+            border-right: solid blue;
+            border-top: solid blue;
+            background-color: #242f44;
+            color: white;
+            margin-bottom: 5vh;
+        }
+
+        .answers {
+            margin-bottom: 20px;
+            text-align: left;
+            display: inline-block;
+            font-size: 25px;
+        }
+
+            .answers label {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+        button:hover {
+            background-color: #38a;
+        }
+
+        .slide {
+            position: absolute;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s;
+            color: black;
+        }
+
+        .active-slide {
+            opacity: 1;
+            z-index: 2;
+            color: black;
+        }
+
+        .quiz-container {
+            position: relative;
+            height: 200px;
+            margin-top: 40px;
+        }
+    
+    </style>
+
+    <script>
+
+        (function () {
+            const myQuestions = [
+                {
+                    question: "Hvor plasserer vi < script > tagen?",
+                    answers: {
+                        A: "I Head",
+                        B: "I body",
+                        C: "Begge",
+
+                    },
+                    correctAnswer: "C"
+                },
+                {
+                    question: "Hvorfor bruker vi console log?",
+                    answers: {
+                        A: "For å sjekke etter feil og error",
+                        B: "For at koden skal fungere i en console",
+                        C: "Fordi det gjør at du trenger ikke skrive like mange kode linjer"
+
+                    },
+                    correctAnswer: "A"
+                },
+                {
+                    question:
+                        "Hvordan kan vi skrive kommentarer til oss selv og andre i koden som ikke vil vises andre steder enn i console loggen?",
+                    answers: {
+                        A: "Ved å skrive hva du vil uten noen tager",
+                        B: "Ved å bruke / / foran din kommentar",
+                        C: "Ved å bruke tagen comment og skrive dine kommentarer",
+
+                    },
+                    correctAnswer: "B"
+                },
+                {
+                    question: "Hva er javascript Variabler?",
+                    answers: {
+                        A: "Det er en funksjon",
+                        B: "Det er containere for å lagre verdier",
+                        C: "De blir brukt til å definere et objekt i en verdi"
+
+                    },
+                    correctAnswer: "B"
+                },
+                {
+                    question: "Hva er en Javascript function?",
+                    answers: {
+                        A: "Standard tag for bruk av alt i javascript",
+                        B: "Det er en spesifikk kode ment for å gjøre en spesifikk oppgave",
+                        C: "Vi bruker ikke function i javascript",
+
+                    },
+                    correctAnswer: "B"
+                },
+                {
+                    question: "Hva er en Array?",
+                    answers: {
+                        A: "Det er noe vi bruker for å skape diverse statements",
+                        B: "Det er en spesiell variable som kan inneholde mer enn en verdi av gangen",
+                        C: "Vi bruker de til å gi en ekstra stil i websiden",
+
+                    },
+                    correctAnswer: "B"
+                },
+                {
+                    question: "En variabel som heter const, gjør hva?",
+                    answers: {
+                        A: "Kan gjøre hva som helst",
+                        B: "Det er en fast variabel som ikke kan endres",
+                        C: "Det er en konstant funksjon som alltid må brukes i din kode",
+
+                    },
+                    correctAnswer: "B"
+                },
+                {
+                    question: "Hva vil denne koden gjøre? button onclick this.innerhtml = date( ) Klokken er?",
+                    answers: {
+                        A: "Koden er feil så den vil ikke gi oss noe",
+                        B: "Den skaper en knapp og en funksjon som viser hva klokken er",
+                        C: "Den lager en knapp uten funksjon",
+
+                    },
+                    correctAnswer: "B"
+                },
+                {
+                    question: "Hva er Javascript Syntax?",
+                    answers: {
+                        A: "En måte å definere variabler på",
+                        B: "En måte å skape funksjoner på",
+                        C: "Det er typer regler om hvordan diverse programmer blir laget",
+
+                    },
+                    correctAnswer: "C"
+                },
+                {
+                    question: "Hva er jQuery?",
+                    answers: {
+                        A: "Det er en slags funksjon vi kan bruke i javascript",
+                        B: "Det er et javascript biblotek",
+                        C: "Det er et annet type språk enn Javascrip",
+
+                    },
+                    correctAnswer: "B"
+                }
+            ];
+
+            function buildQuiz() {
+                const output = [];
+
+                myQuestions.forEach((currentQuestion, questionNumber) => {
+                    const answers = [];
+
+                    for (letter in currentQuestion.answers) {
+                        answers.push(
+                            `<label>
+                             <input type="radio" name="question${questionNumber}" value="${letter}">
+                              ${letter} :
+                              ${currentQuestion.answers[letter]}
+                           </label>`
+                        );
+                    }
+
+                    output.push(
+                        `<div class="slide">
+                           <div class="question"> ${currentQuestion.question} </div>
+                           <div class="answers"> ${answers.join("")} </div>
+                         </div>`
+                    );
+                });
+
+                quizContainer.innerHTML = output.join("");
+            }
+
+            function showResults() {
+                const answerContainers = quizContainer.querySelectorAll(".answers");
+
+                let numCorrect = 0;
+
+                myQuestions.forEach((currentQuestion, questionNumber) => {
+                    const answerContainer = answerContainers[questionNumber];
+                    const selector = `input[name=question${questionNumber}]:checked`;
+                    const userAnswer = (answerContainer.querySelector(selector) || {}).value;
+
+                    if (userAnswer === currentQuestion.correctAnswer) {
+                        numCorrect++;
+
+                        answerContainers[questionNumber].style.color = "green";
+                    } else {
+                        answerContainers[questionNumber].style.color = "red";
+                    }
+                });
+
+                resultsContainer.innerHTML = `${numCorrect} av ${myQuestions.length} `;
+            }
+
+            function showSlide(n) {
+                slides[currentSlide].classList.remove("active-slide");
+                slides[n].classList.add("active-slide");
+                currentSlide = n;
+
+                if (currentSlide === 0) {
+                    previousButton.style.display = "none";
+                } else {
+                    previousButton.style.display = "inline-block";
+                }
+
+                if (currentSlide === slides.length - 1) {
+                    nextButton.style.display = "none";
+                    submitButton.style.display = "inline-block";
+                } else {
+                    nextButton.style.display = "inline-block";
+                    submitButton.style.display = "none";
+                }
+            }
+
+            function showNextSlide() {
+                showSlide(currentSlide + 1);
+            }
+
+            function showPreviousSlide() {
+                showSlide(currentSlide - 1);
+            }
+
+            const quizContainer = document.getElementById("quiz");
+            const resultsContainer = document.getElementById("results");
+            const submitButton = document.getElementById("submit");
+
+            buildQuiz();
+
+            const previousButton = document.getElementById("previous");
+            const nextButton = document.getElementById("next");
+            const slides = document.querySelectorAll(".slide");
+            let currentSlide = 0;
+
+            showSlide(0);
+
+            submitButton.addEventListener("click", showResults);
+            previousButton.addEventListener("click", showPreviousSlide);
+            nextButton.addEventListener("click", showNextSlide);
+
+
+            var template_params = {
+                "reply_to": "reply_to_value",
+                "from_name": "from_name_value",
+                "to_name": "to_name_value",
+                "message_html": "message_html_value"
+            }
+
+            var service_id = "default_service";
+            var template_id = "template_vserwnVe";
+            emailjs.send(service_id, template_id, template_params);
+
+
+        })();
+
+        </script>
+</body>
+</html>
